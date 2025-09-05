@@ -1,13 +1,13 @@
 ---
-name: Jane Doe
-title: Frontend Developer
+name: Martin Dumnås Stuestol
+title: Backside Developer
 avatar: /assets/avatars/jane.jpg
 location: Oslo, Norway
 website: https://janedoe.dev
 github: janedoe
 twitter: janedoe
 linkedin: jane-doe
-tags: [astro, react, ui]
+tags: [kan, ingen, ting]
 order: 1
 ---
 

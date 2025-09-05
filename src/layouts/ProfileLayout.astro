@@ -5,9 +5,7 @@ interface Props {
     title?: string;
     avatar?: string;
     location?: string;
-    website?: string;
     github?: string;
-    twitter?: string;
     linkedin?: string;
     tags?: string[];
   };
@@ -33,9 +31,7 @@ const { data } = Astro.props;
       {data.title && <p class="text-slate-600">{data.title}</p>}
       <div class="mt-2 flex flex-wrap gap-3 text-sm text-slate-600">
         {data.location && <span>📍 {data.location}</span>}
-        {data.website && <a class="underline hover:no-underline" href={data.website} target="_blank">Website</a>}
         {data.github && <a class="underline hover:no-underline" href={`https://github.com/${data.github}`} target="_blank">GitHub</a>}
-        {data.twitter && <a class="underline hover:no-underline" href={`https://twitter.com/${data.twitter}`} target="_blank">Twitter/X</a>}
         {data.linkedin && <a class="underline hover:no-underline" href={`https://www.linkedin.com/in/${data.linkedin}`} target="_blank">LinkedIn</a>}
       </div>
       {data.tags?.length ? (
