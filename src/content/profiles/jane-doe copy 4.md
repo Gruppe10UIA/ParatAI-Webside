@@ -1,7 +1,7 @@
 ---
 name: Jane Doe
 title: Frontend Developer
-avatar: /avatars/jane.jpg
+avatar: /assets/avatars/jane.jpg
 location: Oslo, Norway
 website: https://janedoe.dev
 github: janedoe
