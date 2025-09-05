@@ -8,7 +8,7 @@ github: janedoe
 twitter: janedoe
 linkedin: jane-doe
 tags: [astro, react, ui]
-order: 1
+order: 5
 ---
 
 Hi! I build delightful UIs and love component systems, accessibility, and coffee ☕.
