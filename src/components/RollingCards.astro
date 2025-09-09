@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const profiles = await getCollection('profiles');
 ---
 
-<div class="relative mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden max-w-4xl fade-mask">
+<div class="relative mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden max-w-6xl fade-mask">
   <div class="flex flex-nowrap gap-2 animate-roll justify-center">
     {profiles.map(profile => (
       <SmallCard entry={profile} />
@@ -23,7 +23,7 @@ const profiles = await getCollection('profiles');
   100% { transform: translateX(-50%); }
 }
 .animate-roll {
-  animation: roll 18s linear infinite;
+  animation: roll 24s linear infinite;
   width: max-content;
 }
 .fade-mask {
