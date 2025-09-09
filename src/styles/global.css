@@ -18,6 +18,6 @@ body::before {
 }
 
 
-* {
-    text-color: white;
+h1, h2, h3, h4, h5, h6, p, a, li {
+    color: #e0e0e0;
 }
