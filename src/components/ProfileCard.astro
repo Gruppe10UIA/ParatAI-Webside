@@ -5,7 +5,6 @@ const { entry } = Astro.props;
 const { data, slug } = entry;
 ---
 
-<li>
 <a href={`/profiles/${slug}`} class="group block rounded-2xl border p-6 md:p-7 hover:shadow-md transition">
   <div class="flex items-center gap-4">
     {data.avatar ? (
@@ -36,4 +35,3 @@ const { data, slug } = entry;
   <p class="mt-2 p-2 pt-1 pb-1 bg-neutral-600 rounded-2xl text-gray-200 line-clamp-3">{data.description}</p>
 )}
 </a>
-</li>
