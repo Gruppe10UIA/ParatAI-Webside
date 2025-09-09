@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 
+
 const profiles = defineCollection({
   type: 'content',
   schema: z.object({
@@ -15,4 +16,11 @@ const profiles = defineCollection({
   }),
 });
 
-export const collections = { profiles, };
+const div = defineCollection({
+  type: 'content',
+  schema: z.object({}), // No frontmatter required for plain markdown
+});
+
+export const collections = { profiles, div };
+
+

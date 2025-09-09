@@ -1,0 +1,33 @@
+---
+import SmallCard from './SmallCard.astro';
+import { getCollection } from 'astro:content';
+
+const profiles = await getCollection('profiles');
+---
+
+<div class="relative mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden max-w-4xl fade-mask">
+  <div class="flex flex-nowrap gap-2 animate-roll justify-center">
+    {profiles.map(profile => (
+      <SmallCard entry={profile} />
+    ))}
+    {/* Duplicate cards for seamless loop */}
+    {profiles.map(profile => (
+      <SmallCard entry={profile} />
+    ))}
+  </div>
+</div>
+
+<style>
+@keyframes roll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-roll {
+  animation: roll 18s linear infinite;
+  width: max-content;
+}
+.fade-mask {
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+</style>
