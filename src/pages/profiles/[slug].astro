@@ -1,0 +1,23 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+import ProfilesLayout from '../../layouts/ProfilesLayout.astro';
+
+export async function getStaticPaths() {
+	const profiles = await getCollection('profiles');
+	return profiles.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry },
+	}));
+}
+
+const entry = Astro.props.entry ?? (await getEntry('profiles', Astro.params.slug!));
+if (!entry) {
+	throw new Error(`Profile not found: ${Astro.params.slug}`);
+}
+const { Content } = await entry.render();
+const { data, id } = entry;
+---
+
+<ProfilesLayout data={{ ...data, slug: id }}>
+	<Content />
+</ProfilesLayout>
