@@ -1,0 +1,28 @@
+---
+// src/pages/cards/[slug].astro
+import { getEntry, getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import CardsLayout from '../../layouts/CardsLayout.astro';
+
+// (Recommended) Pre-build all profile pages
+export async function getStaticPaths() {
+  const cards = await getCollection('profiles');
+  return cards.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const entry = await getEntry('profiles', Astro.params.slug!);
+
+if (!entry) {
+  throw new Error(`Profile not found: ${Astro.params.slug}`);
+}
+
+const { Content } = await entry.render();
+const { data } = entry;
+---
+
+<CardsLayout data={data}>
+  <Content />
+</CardsLayout>

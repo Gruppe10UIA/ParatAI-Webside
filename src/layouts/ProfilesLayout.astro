@@ -1,0 +1,77 @@
+---
+import Layout from './Layout.astro';
+import '../styles/components/profile.css';
+
+interface Props {
+  data: {
+    name?: string;
+    title?: string;
+    avatar?: string;
+    location?: string;
+    github?: string;
+    linkedin?: string;
+    tags?: string[];
+    slug?: string;
+  };
+}
+
+const { data } = Astro.props;
+const hasMeta =
+  data?.title || data?.location || data?.github || data?.linkedin || (data?.tags && data.tags.length > 0);
+---
+
+<Layout>
+  <article class="profile">
+    <header class="profile__header">
+      {data?.avatar && (
+        <img
+          class="profile__avatar"
+          src={data.avatar}
+          alt={data?.name ? `${data.name} avatar` : "Profile avatar"}
+          width="128"
+          height="128"
+          loading="eager"
+          decoding="async"
+        />
+      )}
+
+      <div class="profile__heading">
+        {data?.name && <h1 class="profile__name">{data.name}</h1>}
+        {data?.title && <p class="profile__title">{data.title}</p>}
+
+        {hasMeta && (
+          <ul class="profile__meta" aria-label="Profile links and details">
+            {data?.location && <li class="profile__meta-item">{data.location}</li>}
+            {data?.github && (
+              <li class="profile__meta-item">
+                <a class="profile__link" href={data.github} target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a>
+              </li>
+            )}
+            {data?.linkedin && (
+              <li class="profile__meta-item">
+                <a class="profile__link" href={data.linkedin} target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </li>
+            )}
+          </ul>
+        )}
+
+        {data?.tags?.length ? (
+          <ul class="profile__tags" aria-label="Kompetanseområder">
+            {data.tags.map((t) => <li class="profile__tag">{t}</li>)}
+          </ul>
+        ) : null}
+      </div>
+    </header>
+
+    <hr class="profile__divider" />
+
+    <section class="md md--readable">
+      <!-- Your Markdown content gets slotted here -->
+      <slot />
+    </section>
+  </article>
+</Layout>
