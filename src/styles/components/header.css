@@ -1,0 +1,57 @@
+/* Full-bleed fixed header bar */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;           /* ensure full viewport width */
+  background: #000;
+  z-index: 50;
+}
+
+/* Inner row uses the same global container width */
+.site-header__inner {
+  width: min(var(--content-max), 100% - (var(--content-pad) * 2));
+  margin-inline: auto;
+
+  display: flex;
+  justify-content: space-between;  /* logo left, nav right */
+  align-items: center;
+  height: var(--header-height);
+}
+
+/* Brand/logo */
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+}
+
+.site-header__logo {
+  height: 3rem;
+  width: auto;
+  display: block;
+}
+
+/* Nav */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+/* Nav links */
+.site-nav__link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+  text-decoration: none;
+  color: #e0e0e0;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.site-nav__link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
