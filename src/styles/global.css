@@ -52,6 +52,7 @@ body::before {
   background: var(--bg-overlay);
   backdrop-filter: blur(2px);
   pointer-events: none;
+
 }
 
 /* ====== LAYOUT ====== */
@@ -95,4 +96,6 @@ a {
     --content-padding: 1rem;
     --space-xl: 2rem;
   }
+
 }
+

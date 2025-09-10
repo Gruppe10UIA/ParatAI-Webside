@@ -1,34 +1,23 @@
 ---
-// src/pages/profiles/[slug].astro
 import { getEntry, getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import ProfileLayout from '../../layouts/ProfileLayout.astro';
+import ProfilesLayout from '../../layouts/ProfilesLayout.astro';
 
-// (Recommended) Pre-build all profile pages
 export async function getStaticPaths() {
-  const profiles = await getCollection('profiles');
-  return profiles.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+	const profiles = await getCollection('profiles');
+	return profiles.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry },
+	}));
 }
 
-type ProfileEntry = CollectionEntry<'profiles'>;
-
-const entry: ProfileEntry =
-  // If you used getStaticPaths above, Astro.props.entry will be present:
-  Astro.props.entry ??
-  // Fallback (SSR / dev): fetch by slug
-  (await getEntry('profiles', Astro.params.slug!))!;
-
+const entry = Astro.props.entry ?? (await getEntry('profiles', Astro.params.slug!));
 if (!entry) {
-  throw new Error(`Profile not found: ${Astro.params.slug}`);
+	throw new Error(`Profile not found: ${Astro.params.slug}`);
 }
-
 const { Content } = await entry.render();
-const { data } = entry;
+const { data, id } = entry;
 ---
 
-<ProfileLayout data={data}>
-  <Content />
-</ProfileLayout>
+<ProfilesLayout data={{ ...data, slug: id }}>
+	<Content />
+</ProfilesLayout>

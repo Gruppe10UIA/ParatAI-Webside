@@ -1,0 +1,11 @@
+---
+import Content, {frontmatter} from '../content/div/grouptext.md';
+import '../styles/components/grouptext.css';
+---
+
+<div class="grouptext">
+  <h2 class="grouptext-title">{frontmatter.title}</h2>
+  <article class="grouptext-text" >
+    <Content />
+  </article>
+</div>

@@ -21,6 +21,7 @@ const div = defineCollection({
   schema: z.object({}), // No frontmatter required for plain markdown
 });
 
+
 export const collections = { profiles, div };
 
 

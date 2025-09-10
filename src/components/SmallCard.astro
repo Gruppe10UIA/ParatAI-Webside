@@ -2,10 +2,9 @@
 import type { CollectionEntry } from 'astro:content';
 interface Props { entry: CollectionEntry<'profiles'> }
 const { entry } = Astro.props;
-const { data, slug } = entry;
+const { data, id } = entry;
 ---
-
-<a href={`/profiles/${slug}`} class="group rounded-2xl p-6 md:p-7 transition">
+<a href={`/profiles/${id}`} class="group rounded-2xl p-6 md:p-7 transition">
   <div class="flex items-center gap-4">
     {data.avatar ? (
       <img
