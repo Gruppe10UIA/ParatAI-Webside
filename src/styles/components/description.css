@@ -1,25 +1,32 @@
+/* ====== DESCRIPTION COMPONENT ====== */
 .description {
-  /* Card look (optional; keep if you want the panel) */
+  /* Card styling */
   background-color: rgba(209, 213, 219, 0.1);
   border-radius: 1.5rem;
-  padding: 1.5rem;
-
-  /* Two equal columns: text (left) and image (right) */
+  padding: var(--space-md);
+  
+  /* Two-column grid layout */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: var(--space-md);
   align-items: center;
-}
-
-.description-title {
-  font-size: 1.5rem;
-  font-weight: 700;
 }
 
 .description-text {
   display: flex;
-  gap: 1rem;
   flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.description-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.description-text p {
+  color: var(--text-primary);
+  line-height: 1.6;
 }
 
 .description-image img {
@@ -27,11 +34,18 @@
   height: auto;
   display: block;
   border-radius: 0.75rem;
+  object-fit: cover;
 }
 
-/* Optional: Stack on small screens */
+/* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   .description {
     grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+  }
+  
+  .description-title {
+    text-align: center;
   }
 }
