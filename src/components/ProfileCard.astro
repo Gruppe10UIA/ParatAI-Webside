@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 interface Props { entry: CollectionEntry<'profiles'> }
 const { entry } = Astro.props;
-const { data, id } = entry;
+const { data} = entry;
 ---
 
 <a href={`/profiles/${entry.id}`} class="group block rounded-2xl p-6 md:p-7 transition bg-white/10 shadow-lg shadow-white/5 hover:shadow-xl">
