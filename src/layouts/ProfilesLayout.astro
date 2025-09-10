@@ -59,11 +59,11 @@ const hasMeta =
           </ul>
         )}
 
-        {data?.tags?.length && (
+        {data?.tags?.length ? (
           <ul class="profile__tags" aria-label="Kompetanseområder">
-            {data.tags.map((t) => <li class="profile__tag" key={t}>{t}</li>)}
+            {data.tags.map((t) => <li class="profile__tag">{t}</li>)}
           </ul>
-        )}
+        ) : null}
       </div>
     </header>
 

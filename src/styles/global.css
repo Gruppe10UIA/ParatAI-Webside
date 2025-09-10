@@ -16,9 +16,9 @@ body::before {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(2px);
   pointer-events: none;
-}
-
+}/*
 
 h1, h2, h3, h4, h5, h6, p, a, li {
     color: #e0e0e0;
 }
+    */
