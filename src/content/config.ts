@@ -21,18 +21,7 @@ const div = defineCollection({
   schema: z.object({}), // No frontmatter required for plain markdown
 });
 
-const cards = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    link: z.string().optional(),
-    tags: z.array(z.string()).default([]),
-    order: z.number().optional(),
-  }),
-});
 
-export const collections = { profiles, div, cards };
+export const collections = { profiles, div };
 
 

@@ -1,4 +1,7 @@
 ---
+import Layout from './Layout.astro';
+import '../styles/components/profile.css';
+
 interface Props {
   data: {
     name?: string;
@@ -13,29 +16,62 @@ interface Props {
 }
 
 const { data } = Astro.props;
+const hasMeta =
+  data?.title || data?.location || data?.github || data?.linkedin || (data?.tags && data.tags.length > 0);
 ---
 
-<article class="mx-auto max-w-3xl p-6">
-  <header class="flex items-center gap-4 mb-6">
-    {data.avatar && (
-      <img
-        src={data.avatar}
-        alt={data.name}
-        width="96"
-        height="96"
-        class="h-24 w-24 rounded-full object-cover border"
-        loading="lazy"
-      />
-    )}
-    <div>
-      <h1 class="text-3xl font-bold leading-tight">{data.name}</h1>
-      {data.title && <p class="text-slate-600">{data.title}</p>}
-      <div class="mt-2 flex flex-wrap gap-3 text-sm text-slate-600">
-        {data.location && <span>📍 {data.location}</span>}
-        {data.github && (
-          <a class="underline hover:no-underline" href={data.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+<Layout>
+  <article class="profile">
+    <header class="profile__header">
+      {data?.avatar && (
+        <img
+          class="profile__avatar"
+          src={data.avatar}
+          alt={data?.name ? `${data.name} avatar` : "Profile avatar"}
+          width="128"
+          height="128"
+          loading="eager"
+          decoding="async"
+        />
+      )}
+
+      <div class="profile__heading">
+        {data?.name && <h1 class="profile__name">{data.name}</h1>}
+        {data?.title && <p class="profile__title">{data.title}</p>}
+
+        {hasMeta && (
+          <ul class="profile__meta" aria-label="Profile links and details">
+            {data?.location && <li class="profile__meta-item">{data.location}</li>}
+            {data?.github && (
+              <li class="profile__meta-item">
+                <a class="profile__link" href={data.github} target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a>
+              </li>
+            )}
+            {data?.linkedin && (
+              <li class="profile__meta-item">
+                <a class="profile__link" href={data.linkedin} target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </li>
+            )}
+          </ul>
         )}
-        {data.linkedin && (
-          <a class="underline hover:no-underline" href={data.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+
+        {data?.tags?.length && (
+          <ul class="profile__tags" aria-label="Kompetanseområder">
+            {data.tags.map((t) => <li class="profile__tag" key={t}>{t}</li>)}
+          </ul>
         )}
       </div>
+    </header>
+
+    <hr class="profile__divider" />
+
+    <section class="md md--readable">
+      <!-- Your Markdown content gets slotted here -->
+      <slot />
+    </section>
+  </article>
+</Layout>
