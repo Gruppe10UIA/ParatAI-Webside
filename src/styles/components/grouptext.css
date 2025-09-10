@@ -1,0 +1,30 @@
+.grouptext {
+  /* Card look (optional; keep if you want the panel) */
+  background-color: rgba(209, 213, 219, 0.1);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+
+  /* Two equal columns: text (left) and image (right) */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.grouptext-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.grouptext-text {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+/* Optional: Stack on small screens */
+@media (max-width: 768px) {
+  .description {
+    grid-template-columns: 1fr;
+  }
+}
