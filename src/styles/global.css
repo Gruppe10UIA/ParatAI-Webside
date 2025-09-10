@@ -1,51 +1,101 @@
 @import "tailwindcss";
 
-/* Background + overlay */
+/* ====== CSS CUSTOM PROPERTIES ====== */
+:root {
+  
+  --content-width: clamp(20rem, 95vw, 75rem);
+  --content-padding: clamp(1rem, 5vw, 2rem);
+  
+  /* Header */
+  --header-height: 4rem;
+  
+  /* Spacing-skala */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  
+  /* Farger */
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+}
+
+/* ====== BASISSTYLING ====== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  margin: 0;
+  min-height: 100dvh;
+  color: var(--text-primary);
+  
   background-image: url('assets/global/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
-  margin: 1.5rem 0 0 0;               
-  min-height: 100dvh;
 }
+
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -10;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--bg-overlay);
   backdrop-filter: blur(2px);
   pointer-events: none;
 
 }
 
-/* Global sizing vars */
-:root {
-  --content-max: 80rem;      /* max width for content */
-  --content-pad: 1rem;       /* side padding on small screens */
-  --header-height: 4rem;     /* actual fixed header height */
-}
-
-/* Containerize all direct children of body EXCEPT the full-bleed header */
-body > :not(.site-header) {
-  width: min(var(--content-max), 100% - (var(--content-pad) * 2));
+/* ====== LAYOUT ====== */
+.container {
+  width: var(--content-width);
   margin-inline: auto;
+  padding-inline: var(--content-padding);
 }
 
-/* Keep content from sliding under the fixed header */
 main {
-  padding-top: var(--header-height);
+  padding-top: calc(var(--header-height) + var(--space-lg));
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: var(--space-xl);
 }
 
-/* Global text color */
-h1, h2, h3, h4, h5, h6, p, a, li {
+/* ====== SKRIFT ====== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
 
-  color: #e0e0e0;
+h1 { font-size: clamp(1.8rem, 4vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.875rem); }
+
+p {
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --content-padding: 1rem;
+    --space-xl: 2rem;
+  }
+
 }
 
