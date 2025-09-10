@@ -1,17 +1,22 @@
 ---
-import Content, {frontmatter} from '../content/div/description.md';
+import Content, { frontmatter } from '../content/div/description.md';
+import '../styles/components/description.css';
 ---
 
-<div class="mx-auto max-w-6xl p-6 bg-gray-300/10 shadow-lg shadow-white/5 rounded-3xl flex items-center justify-between">
-  <div class="p-4">
-    <h2 class="text-2xl font-bold mb-4">
-      {frontmatter.title}
-    </h2>
-    <p>
+<div class="description">
+  <div class="description-content">
+    <div class="description-text">
+      <h2 class="description-title">
+        {frontmatter.title}
+      </h2>
+      <p>
       <Content />
-    </p>
+      </p>
+    </div>
+
+    
   </div>
-  <div class="">
-    <img src="/assets/avatars/gruppebilde.jpg" class="max-h-400 rounded-xl border-1" />
+  <div class="description-image">
+    <img src="/assets/avatars/gruppebilde.jpg" alt="Group image" />
   </div>
 </div>
