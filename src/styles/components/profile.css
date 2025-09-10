@@ -15,6 +15,12 @@
   max-width: 70ch;
 }
 
+/* Global text color */
+h1, h2, h3, h4, h5, h6, p, a, li {
+
+  color: #000000;
+}
+
 @media (prefers-color-scheme: dark) {
   .profile {
     --fg: hsl(220 15% 88%);
@@ -30,7 +36,10 @@
 
 /* Header */
 .profile__header {
-  display: grid;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: auto 1fr;
   gap: 1.25rem;
   align-items: center;
