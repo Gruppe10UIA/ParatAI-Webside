@@ -21,6 +21,14 @@ const div = defineCollection({
   schema: z.object({}), // No frontmatter required for plain markdown
 });
 
+const projects = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    link: z.string().url().optional(),
+  }),
+});
 
 export const collections = { profiles, div };
 
