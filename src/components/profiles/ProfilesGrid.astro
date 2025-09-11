@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ProfileCard from './ProfileCard.astro';
+import '../styles/components/profiles-grid.css';
 
 const profiles = await getCollection('profiles');
 profiles.sort(
@@ -10,19 +11,16 @@ profiles.sort(
 );
 ---
 
-<section class="">
-  <header class="mb-6">
-    <h2 class="text-2xl md:text-3xl font-bold">ParatAI-medlemmer</h2>
+<section class="profiles-section">
+  <header class="profiles-header">
+    <h2 class="profiles-title">ParatAI-medlemmer</h2>
   </header>
 
   {profiles.length ? (
-    <div
-      class="grid gap-6 sm:gap-7
-             grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-    >
+    <div class="profiles-grid">
       {profiles.map((entry) => <ProfileCard entry={entry} />)}
     </div>
   ) : (
-    <p class="text-slate-600">No profiles yet.</p>
+    <p class="profiles-empty">No profiles yet.</p>
   )}
 </section>
