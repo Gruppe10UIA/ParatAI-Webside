@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import '../styles/components/profile-card.css';
+import '../../styles/components/profile-card.css';
 interface Props { entry: CollectionEntry<'profiles'> }
 const { entry } = Astro.props;
-const { data} = entry;
+const { data, slug } = entry;
 ---
 <a href={`/profiles/${slug}`} class="profile-card">
   <div class="profile-card__header">

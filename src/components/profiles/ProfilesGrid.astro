@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ProfileCard from './ProfileCard.astro';
-import '../styles/components/profiles-grid.css';
+import '../../styles/components/profiles-grid.css';
 
 const profiles = await getCollection('profiles');
 profiles.sort(
