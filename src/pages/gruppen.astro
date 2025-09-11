@@ -1,13 +1,18 @@
 ---
 import Description from '../components/Description.astro';
 import Grouptext from '../components/Grouptext.astro';
+import { getCollection } from 'astro:content';
 import ProjectCard from '../components/projects/ProjectCard.astro';
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+
+const projects = await getCollection('projects');
 ---
 
 <Layout>
 	<Description />
-	<ProjectCard />
+		{projects.map((entry) => (
+			<ProjectCard entry={entry} />
+		))}
 	<Grouptext />
 </Layout>
