@@ -1,39 +1,57 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import '../../styles/components/profile-card.css';
 interface Props { entry: CollectionEntry<'profiles'> }
 const { entry } = Astro.props;
-const { data} = entry;
+const { data, slug } = entry;
 ---
-
-<a href={`/profiles/${entry.id}`} class="group block rounded-2xl p-6 md:p-7 transition bg-white/10 shadow-lg shadow-white/5 hover:shadow-xl">
-  <div class="flex items-center gap-4">
+<a href={`/profiles/${slug}`} class="profile-card">
+  <div class="profile-card__header">
     {data.avatar ? (
       <img
         src={data.avatar}
         alt={data.name}
-        class="size-20 md:h-24 md:w-24 rounded-full object-cover border-black"
+        class="profile-card__avatar"
         loading="lazy"
       />
     ) : (
-      <div class="h-20 w-20 md:h-24 md:w-24 rounded-full bg-slate-200 grid place-items-center text-slate-600 text-2xl md:text-3xl">
+      <div class="profile-card__avatar-fallback">
         {data.name?.slice(0,1) ?? "?"}
       </div>
     )}
-    <div>
-      <h3 class="text-lg md:text-xl font-semibold leading-snug group-hover:underline">{data.name}</h3>
-      {data.title && <p class="text-sm md:text-base text-slate-600">{data.title}</p>}
-      {data.location && <p class="text-xs md:text-sm mt-1 text-slate-500">📍 {data.location}</p>}
+    <div class="profile-card__content">
+      <h3 class="profile-card__name">{data.name}</h3>
+      {data.title && <p class="profile-card__title">{data.title}</p>}
+      {data.location && <p class="profile-card__location">📍 {data.location}</p>}
     </div>
   </div>
-
+  
   {data.tags?.length ? (
-    <ul>
-      {data.tags.slice(0, 3).map((t: string) => (
-        <li>{t}</li>
-      ))}
+    <ul class="profile-card__tags">
+      {data.tags.map((t) => <li class="profile-card__tag">{t}</li>)}
     </ul>
   ) : null}
-  {data.description && (
-  <p class="mt-2 p-2 pt-1 pb-1 bg-slate-800 rounded-2xl text-gray-200 line-clamp-3">{data.description}</p>
-)}
+  
+  {(data.github || data.linkedin) && (
+    <div class="profile-card__links">
+      {data.github && (
+        <button 
+          class="profile-card__link"
+          data-url={data.github}
+          onclick="event.stopPropagation(); window.open(this.dataset.url, '_blank')"
+        >
+          GitHub
+        </button>
+      )}
+      {data.linkedin && (
+        <button 
+          class="profile-card__link"
+          data-url={data.linkedin}
+          onclick="event.stopPropagation(); window.open(this.dataset.url, '_blank')"
+        >
+          LinkedIn
+        </button>
+      )}
+    </div>
+  )}
 </a>

@@ -1,0 +1,52 @@
+/* ====== PROFILES GRID COMPONENT ====== */
+.profiles-section {
+  width: 100%;
+}
+
+.profiles-header {
+  margin-bottom: var(--space-md);
+}
+
+.profiles-title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* ====== GRID LAYOUT ====== */
+.profiles-grid {
+  display: grid;
+  gap: var(--space-md);
+  
+  /* Responsive columns */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  
+  /* Ensure grid items are properly contained */
+  align-items: stretch;
+}
+
+/* Fallback message */
+.profiles-empty {
+  color: #6b7280;
+  text-align: center;
+  padding: var(--space-xl);
+  font-style: italic;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (min-width: 640px) {
+  .profiles-grid {
+    gap: 1.75rem;
+  }
+  
+  .profiles-header {
+    margin-bottom: var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .profiles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
